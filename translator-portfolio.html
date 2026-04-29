@@ -1,0 +1,1848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Achour Zineddine | Legal Translator & Linguistic AI Specialist</title>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Syne:wght@600;700;800&display=swap");
+
+    :root {
+      --green: #22d883;
+      --green-dark: #12b96a;
+      --mint: #eefdF8;
+      --mint-2: #dff8f0;
+      --ink: #15202d;
+      --text: #485565;
+      --soft: #edf7f3;
+      --white: #ffffff;
+      --line: #d7eee5;
+      --shadow: 0 22px 60px rgba(20, 86, 68, 0.12);
+      --shadow-strong: 0 32px 90px rgba(20, 86, 68, 0.18);
+      --heading: "Syne", "Noto Kufi Arabic", "Noto Sans Arabic", Tahoma, sans-serif;
+      --body: "DM Sans", "Noto Kufi Arabic", "Noto Sans Arabic", Tahoma, Arial, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--mint);
+    }
+
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+      color: var(--ink);
+      font-family: var(--body);
+      line-height: 1.65;
+      background:
+        radial-gradient(circle at 8% 16%, rgba(34, 216, 131, 0.12), transparent 24%),
+        radial-gradient(circle at 86% 20%, rgba(34, 216, 131, 0.2), transparent 32%),
+        linear-gradient(180deg, #ffffff 0%, var(--mint) 48%, #ffffff 100%);
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -3;
+      pointer-events: none;
+      background-image:
+        radial-gradient(circle, rgba(18, 185, 106, 0.16) 1.5px, transparent 1.5px),
+        linear-gradient(120deg, transparent 0 48%, rgba(18, 185, 106, 0.05) 48% 52%, transparent 52% 100%);
+      background-size: 32px 32px, 260px 260px;
+      mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.08));
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    a,
+    .service-card,
+    .project-card,
+    .experience-card,
+    .skill-chip,
+    .contact-card,
+    .tool-chip {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    ::selection {
+      background: rgba(34, 216, 131, 0.28);
+    }
+
+    ::-webkit-scrollbar {
+      width: 12px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #f4fffb;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      border: 3px solid #f4fffb;
+      border-radius: 999px;
+      background: linear-gradient(180deg, var(--green), #7de8bd);
+    }
+
+    .noise {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      opacity: 0.4;
+      background-image:
+        radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.85) 0 1px, transparent 1px),
+        radial-gradient(circle at 70% 60%, rgba(18, 185, 106, 0.18) 0 1px, transparent 1px);
+      background-size: 46px 46px, 76px 76px;
+    }
+
+    .cursor-dot,
+    .cursor-ring {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 9999;
+      pointer-events: none;
+      border-radius: 50%;
+      opacity: 0;
+      transform: translate(-50%, -50%);
+    }
+
+    .cursor-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--green);
+      box-shadow: 0 0 18px rgba(34, 216, 131, 0.8);
+    }
+
+    .cursor-ring {
+      width: 34px;
+      height: 34px;
+      border: 1px solid rgba(18, 185, 106, 0.7);
+      transition: width 0.2s ease, height 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    }
+
+    body.cursor-ready .cursor-dot,
+    body.cursor-ready .cursor-ring {
+      opacity: 1;
+    }
+
+    body.cursor-hover .cursor-ring {
+      width: 58px;
+      height: 58px;
+      border-color: rgba(21, 32, 45, 0.28);
+      background: rgba(34, 216, 131, 0.1);
+    }
+
+    @media (pointer: fine) {
+      body,
+      body * {
+        cursor: none !important;
+      }
+    }
+
+    .loader {
+      position: fixed;
+      inset: 0;
+      z-index: 9998;
+      display: grid;
+      place-items: center;
+      background:
+        radial-gradient(circle at 52% 45%, rgba(34, 216, 131, 0.22), transparent 28%),
+        linear-gradient(135deg, #ffffff, #e9fff6);
+      transition: opacity 0.75s ease, visibility 0.75s ease;
+    }
+
+    body.loaded .loader {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .loader-orbit {
+      position: relative;
+      display: grid;
+      place-items: center;
+      width: min(76vw, 320px);
+      aspect-ratio: 1;
+      border: 1px dashed rgba(18, 185, 106, 0.38);
+      border-radius: 50%;
+      animation: spin 9s linear infinite;
+    }
+
+    .loader-initials {
+      position: absolute;
+      display: grid;
+      place-items: center;
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      color: var(--green);
+      font-family: var(--heading);
+      font-size: 3.4rem;
+      font-weight: 800;
+      background: #fff;
+      box-shadow: var(--shadow);
+      animation: counterSpin 9s linear infinite;
+    }
+
+    .loader-word {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      padding: 0.3rem 0.62rem;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--ink);
+      font-size: 0.78rem;
+      font-weight: 700;
+      background: #fff;
+      transform: rotate(var(--angle)) translateX(132px) rotate(calc(-1 * var(--angle)));
+    }
+
+    .loader-bar {
+      position: absolute;
+      bottom: 13%;
+      left: 50%;
+      overflow: hidden;
+      width: min(260px, 70vw);
+      height: 6px;
+      border-radius: 999px;
+      background: rgba(18, 185, 106, 0.14);
+      transform: translateX(-50%);
+    }
+
+    .loader-bar::before {
+      content: "";
+      display: block;
+      width: 100%;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--green-dark), var(--green), #92f0ca);
+      transform-origin: left;
+      animation: loadbar 2s ease forwards;
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+      width: 100%;
+      padding: 1.1rem clamp(1rem, 4vw, 3.6rem);
+      opacity: 0;
+      transform: translateY(-105%);
+      transition: 0.8s ease 0.15s;
+    }
+
+    body.loaded .navbar {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0.75rem 0.85rem 0.75rem 1rem;
+      border: 1px solid rgba(18, 185, 106, 0.16);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.78);
+      box-shadow: 0 18px 50px rgba(20, 86, 68, 0.1);
+      backdrop-filter: blur(18px);
+    }
+
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      flex: 0 0 auto;
+      color: var(--ink);
+      font-family: var(--heading);
+      font-weight: 800;
+    }
+
+    .logo-mark {
+      display: grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      color: #fff;
+      background: var(--green);
+      box-shadow: 0 10px 24px rgba(34, 216, 131, 0.3);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: clamp(0.55rem, 1.4vw, 1rem);
+      list-style: none;
+      color: #657282;
+      font-size: 0.84rem;
+      font-weight: 700;
+    }
+
+    .nav-links a {
+      position: relative;
+      display: inline-flex;
+      padding: 0.24rem 0;
+      transition: color 0.22s ease;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -0.22rem;
+      height: 2px;
+      border-radius: 999px;
+      background: var(--green);
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.25s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--ink);
+    }
+
+    .nav-links a:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+
+    .talk-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 2.6rem;
+      padding: 0 1.1rem;
+      border: 1px solid var(--green);
+      border-radius: 999px;
+      color: var(--green-dark);
+      font-size: 0.8rem;
+      font-weight: 800;
+      background: rgba(34, 216, 131, 0.06);
+      transition: 0.24s ease;
+      white-space: nowrap;
+    }
+
+    .talk-btn:hover {
+      color: #fff;
+      background: var(--green);
+      transform: translateY(-2px);
+    }
+
+    main {
+      position: relative;
+      z-index: 1;
+    }
+
+    section {
+      position: relative;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: clamp(5.2rem, 9vw, 8rem) clamp(1rem, 4vw, 2rem);
+      scroll-margin-top: 7rem;
+    }
+
+    .shape {
+      position: absolute;
+      z-index: -1;
+      pointer-events: none;
+      opacity: 0.65;
+    }
+
+    .shape.hex {
+      width: 160px;
+      height: 140px;
+      border: 18px solid rgba(34, 216, 131, 0.09);
+      clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+    }
+
+    .shape.circle {
+      width: 90px;
+      height: 90px;
+      border: 2px solid rgba(34, 216, 131, 0.22);
+      border-radius: 50%;
+    }
+
+    .shape.dots {
+      width: 140px;
+      height: 140px;
+      background-image: radial-gradient(circle, rgba(18, 185, 106, 0.2) 2px, transparent 2px);
+      background-size: 18px 18px;
+    }
+
+    .hero {
+      display: grid;
+      align-items: center;
+      min-height: 100vh;
+      max-width: 1260px;
+      padding-top: 7.8rem;
+      grid-template-columns: minmax(0, 0.95fr) minmax(320px, 0.95fr);
+      gap: clamp(2rem, 5vw, 5rem);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: max(-6vw, -80px);
+      top: 0;
+      z-index: -2;
+      width: min(56vw, 700px);
+      height: 100%;
+      background: linear-gradient(135deg, rgba(34, 216, 131, 0.95), rgba(19, 196, 118, 0.92));
+      clip-path: polygon(18% 0, 100% 0, 100% 88%, 10% 78%, 0 38%);
+    }
+
+    .eyebrow {
+      color: var(--ink);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      margin-top: 0.7rem;
+      max-width: 700px;
+      color: var(--ink);
+      font-family: var(--heading);
+      font-size: clamp(3rem, 7.5vw, 6.2rem);
+      font-weight: 800;
+      line-height: 0.92;
+      letter-spacing: 0;
+    }
+
+    .hero h1 span {
+      color: var(--green);
+      background: linear-gradient(90deg, var(--green-dark), var(--green), #0aa5a9);
+      background-size: 180% auto;
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shimmer 5s linear infinite;
+    }
+
+    .hero-summary {
+      max-width: 560px;
+      margin-top: 1.35rem;
+      color: var(--text);
+      font-size: 1.02rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      margin-top: 2rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 3.15rem;
+      padding: 0 1.35rem;
+      border: 1px solid var(--green);
+      border-radius: 4px;
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      transition: 0.24s ease;
+    }
+
+    .btn.primary {
+      color: #fff;
+      background: var(--green);
+      box-shadow: 0 16px 38px rgba(34, 216, 131, 0.24);
+    }
+
+    .btn.secondary {
+      color: var(--green-dark);
+      background: #fff;
+    }
+
+    .btn:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-note {
+      display: grid;
+      gap: 0.1rem;
+      margin-top: 5.2rem;
+      padding-left: 1rem;
+      border-left: 3px solid var(--green);
+      color: #7b8997;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    .hero-visual {
+      position: relative;
+      display: grid;
+      place-items: center;
+      min-height: 590px;
+    }
+
+    .profile-figure {
+      position: relative;
+      width: min(86vw, 420px);
+      min-height: 520px;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .profile-core {
+      position: absolute;
+      left: 50%;
+      bottom: 40px;
+      width: min(86vw, 340px);
+      height: 430px;
+      border-radius: 170px 170px 32px 32px;
+      background:
+        radial-gradient(circle at 42% 16%, #fff 0 20%, transparent 21%),
+        linear-gradient(160deg, #fafffd 0 34%, #dff8f0 34% 36%, #ffffff 36% 100%);
+      box-shadow: 0 34px 90px rgba(20, 86, 68, 0.22);
+      transform: translateX(-50%);
+    }
+
+    .profile-core::before {
+      content: "AZ";
+      position: absolute;
+      left: 50%;
+      top: 26px;
+      display: grid;
+      place-items: center;
+      width: 118px;
+      height: 118px;
+      border: 8px solid #fff;
+      border-radius: 50%;
+      color: #fff;
+      font-family: var(--heading);
+      font-size: 2.7rem;
+      font-weight: 800;
+      background: var(--green);
+      box-shadow: 0 18px 46px rgba(34, 216, 131, 0.32);
+      transform: translateX(-50%);
+    }
+
+    .profile-core::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 178px;
+      width: 190px;
+      height: 190px;
+      border-radius: 50%;
+      background:
+        linear-gradient(#fff, #fff) padding-box,
+        conic-gradient(var(--green), #9cf0ce, var(--green)) border-box;
+      border: 15px solid transparent;
+      transform: translateX(-50%);
+    }
+
+    .profile-label {
+      position: absolute;
+      left: 50%;
+      top: 214px;
+      display: grid;
+      place-items: center;
+      width: 150px;
+      height: 126px;
+      color: var(--ink);
+      text-align: center;
+      transform: translateX(-50%);
+    }
+
+    .profile-label strong {
+      display: block;
+      color: var(--green-dark);
+      font-family: var(--heading);
+      font-size: 1.28rem;
+      line-height: 1.05;
+    }
+
+    .profile-label span {
+      display: block;
+      margin-top: 0.35rem;
+      color: #657282;
+      font-size: 0.78rem;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .orbit {
+      position: absolute;
+      inset: 42px 36px 70px;
+      border: 2px solid rgba(255, 255, 255, 0.72);
+      border-radius: 50%;
+      animation: spin 18s linear infinite;
+    }
+
+    .floating-badge {
+      position: absolute;
+      display: grid;
+      place-items: center;
+      min-width: 104px;
+      min-height: 104px;
+      padding: 1rem;
+      border: 8px solid rgba(255, 255, 255, 0.9);
+      border-radius: 50%;
+      color: var(--ink);
+      text-align: center;
+      background: #fff;
+      box-shadow: var(--shadow);
+      animation: bob 4.8s ease-in-out infinite;
+    }
+
+    .floating-badge strong {
+      display: block;
+      color: var(--green);
+      font-family: var(--heading);
+      font-size: 1.55rem;
+      line-height: 1;
+    }
+
+    .floating-badge span {
+      color: #7b8997;
+      font-size: 0.72rem;
+      font-weight: 800;
+      line-height: 1.15;
+    }
+
+    .badge-a {
+      left: -4px;
+      top: 214px;
+    }
+
+    .badge-b {
+      right: -4px;
+      top: 138px;
+      animation-delay: -1.5s;
+    }
+
+    .badge-c {
+      right: 20px;
+      bottom: 40px;
+      animation-delay: -2.6s;
+    }
+
+    .micro-text {
+      position: absolute;
+      color: rgba(21, 32, 45, 0.15);
+      font-family: var(--heading);
+      font-weight: 800;
+      animation: drift 8s ease-in-out infinite alternate;
+      pointer-events: none;
+      white-space: nowrap;
+    }
+
+    .micro-1 { right: 3%; top: 18%; font-size: 1.1rem; }
+    .micro-2 { right: 12%; bottom: 18%; font-size: 1.35rem; animation-delay: -2s; }
+    .micro-3 { left: 3%; top: 32%; font-size: 1rem; animation-delay: -3s; }
+
+    .section-head {
+      text-align: center;
+    }
+
+    .section-kicker {
+      color: #667888;
+      font-size: 0.74rem;
+      font-weight: 800;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .section-title {
+      margin-top: 0.4rem;
+      color: var(--green);
+      font-family: var(--heading);
+      font-size: clamp(2rem, 4.6vw, 3.35rem);
+      line-height: 1;
+      letter-spacing: 0;
+    }
+
+    .section-copy {
+      max-width: 760px;
+      margin: 0.9rem auto 0;
+      color: var(--text);
+    }
+
+    .about {
+      display: grid;
+      align-items: center;
+      grid-template-columns: 0.86fr 1fr;
+      gap: clamp(2rem, 6vw, 5rem);
+    }
+
+    .about-visual {
+      position: relative;
+      display: grid;
+      place-items: center;
+      min-height: 500px;
+    }
+
+    .about-ring {
+      position: absolute;
+      width: min(78vw, 360px);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background:
+        linear-gradient(#fff, #fff) padding-box,
+        conic-gradient(from 120deg, var(--green), transparent 34%, var(--green) 72%, transparent) border-box;
+      border: 24px solid transparent;
+      box-shadow: var(--shadow);
+    }
+
+    .about-avatar {
+      position: relative;
+      display: grid;
+      place-items: center;
+      width: min(64vw, 260px);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      color: #fff;
+      font-family: var(--heading);
+      font-size: 5rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--green), #15b4a8);
+      box-shadow: inset 0 0 0 14px rgba(255, 255, 255, 0.85), var(--shadow-strong);
+    }
+
+    .about-stat {
+      position: absolute;
+      display: grid;
+      place-items: center;
+      width: 116px;
+      height: 116px;
+      border: 8px solid #fff;
+      border-radius: 50%;
+      text-align: center;
+      background: #fff;
+      box-shadow: var(--shadow);
+    }
+
+    .about-stat strong {
+      color: var(--green);
+      font-family: var(--heading);
+      font-size: 1.45rem;
+      line-height: 1;
+    }
+
+    .about-stat span {
+      display: block;
+      margin-top: 0.18rem;
+      color: #7b8997;
+      font-size: 0.68rem;
+      font-weight: 800;
+      line-height: 1.15;
+    }
+
+    .about-stat.one { left: 5%; top: 18%; }
+    .about-stat.two { right: 4%; top: 32%; }
+    .about-stat.three { left: 11%; bottom: 12%; }
+
+    .about-content .section-head {
+      text-align: left;
+    }
+
+    .about-content .section-copy {
+      margin-left: 0;
+    }
+
+    .about-card {
+      margin-top: 1.5rem;
+      padding: 1.4rem;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.74);
+      box-shadow: var(--shadow);
+    }
+
+    .about-card h3 {
+      font-family: var(--heading);
+      font-size: 1.15rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .about-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      margin-top: 1.4rem;
+    }
+
+    .services-grid,
+    .projects-grid,
+    .language-grid,
+    .education-grid {
+      display: grid;
+      gap: 1.2rem;
+      margin-top: 3rem;
+    }
+
+    .services-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .service-card,
+    .project-card,
+    .language-card,
+    .education-card {
+      position: relative;
+      overflow: hidden;
+      padding: 1.35rem;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: #fff;
+      box-shadow: var(--shadow);
+      transition: transform 0.26s ease, box-shadow 0.26s ease, border-color 0.26s ease;
+    }
+
+    .service-card.featured {
+      color: #fff;
+      background: var(--green);
+      border-color: var(--green);
+      box-shadow: 0 30px 70px rgba(34, 216, 131, 0.28);
+    }
+
+    .service-card::after,
+    .project-card::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--green), #9df2cc);
+      transform: translateX(-102%);
+      transition: transform 0.3s ease;
+    }
+
+    .service-card:hover,
+    .project-card:hover,
+    .language-card:hover,
+    .education-card:hover {
+      border-color: rgba(34, 216, 131, 0.42);
+      box-shadow: var(--shadow-strong);
+      transform: translateY(-10px);
+    }
+
+    .service-card:hover::after,
+    .project-card:hover::after {
+      transform: translateX(0);
+    }
+
+    .service-icon {
+      display: grid;
+      place-items: center;
+      width: 54px;
+      height: 54px;
+      margin-bottom: 1.2rem;
+      border: 1px solid rgba(34, 216, 131, 0.24);
+      border-radius: 4px;
+      color: var(--green);
+      font-family: var(--heading);
+      font-weight: 800;
+      background: var(--soft);
+    }
+
+    .featured .service-icon {
+      color: #fff;
+      border-color: rgba(255, 255, 255, 0.44);
+      background: rgba(255, 255, 255, 0.16);
+    }
+
+    .service-card h3,
+    .project-card h3,
+    .language-card h3,
+    .education-card h3 {
+      font-family: var(--heading);
+      font-size: 1.18rem;
+      line-height: 1.15;
+    }
+
+    .service-card p,
+    .project-card p,
+    .language-card p,
+    .education-card p {
+      margin-top: 0.75rem;
+      color: var(--text);
+      font-size: 0.92rem;
+    }
+
+    .service-card.featured p {
+      color: rgba(255, 255, 255, 0.86);
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 1.9rem;
+      padding: 0.3rem 0.62rem;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--green-dark);
+      font-size: 0.72rem;
+      font-weight: 800;
+      background: #f8fffc;
+    }
+
+    .featured .tag {
+      color: #fff;
+      border-color: rgba(255, 255, 255, 0.32);
+      background: rgba(255, 255, 255, 0.14);
+    }
+
+    .language-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .language-card {
+      min-height: 310px;
+    }
+
+    .language-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .language-dot {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 22px color-mix(in srgb, var(--accent) 45%, transparent);
+    }
+
+    .language-meter {
+      position: relative;
+      display: grid;
+      place-items: center;
+      width: 132px;
+      height: 132px;
+      margin: 1.35rem 0;
+      border-radius: 50%;
+      background: conic-gradient(var(--accent) calc(var(--p, 0) * 1%), #e8f4ef 0);
+      transition: --p 1.25s ease;
+    }
+
+    .language-meter::before {
+      content: "";
+      position: absolute;
+      inset: 12px;
+      border-radius: 50%;
+      background: #fff;
+    }
+
+    .language-meter span {
+      position: relative;
+      z-index: 1;
+      color: var(--ink);
+      font-family: var(--heading);
+      font-size: 1.35rem;
+      font-weight: 800;
+    }
+
+    .skills-wrap {
+      display: grid;
+      grid-template-columns: 0.92fr 1.08fr;
+      gap: 1.2rem;
+      margin-top: 3rem;
+    }
+
+    .skill-panel,
+    .tools-panel {
+      padding: 1.4rem;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: #fff;
+      box-shadow: var(--shadow);
+    }
+
+    .skill-panel h3,
+    .tools-panel h3 {
+      margin-bottom: 1rem;
+      font-family: var(--heading);
+    }
+
+    .skill-bar {
+      margin-top: 0.9rem;
+    }
+
+    .skill-meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 0.38rem;
+      color: var(--ink);
+      font-size: 0.88rem;
+      font-weight: 800;
+    }
+
+    .track {
+      overflow: hidden;
+      height: 10px;
+      border-radius: 999px;
+      background: #e9f6f1;
+    }
+
+    .fill {
+      position: relative;
+      width: 0;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--green-dark), var(--green), #9cf0ce);
+      transition: width 1.1s cubic-bezier(0.21, 0.82, 0.28, 1);
+    }
+
+    .fill::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.85), transparent);
+      transform: translateX(-100%);
+    }
+
+    .skill-bar.filled .fill::after {
+      animation: sweep 1s ease 0.25s;
+    }
+
+    .tool-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+    }
+
+    .tool-chip {
+      display: inline-flex;
+      align-items: center;
+      min-height: 2.1rem;
+      padding: 0.36rem 0.7rem;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: #657282;
+      font-size: 0.78rem;
+      font-weight: 800;
+      background: #f8fffc;
+      transition: 0.22s ease;
+    }
+
+    .tool-chip:hover {
+      color: var(--green-dark);
+      border-color: rgba(34, 216, 131, 0.45);
+      transform: translateY(-6px);
+    }
+
+    .experience-list {
+      display: grid;
+      gap: 1rem;
+      margin-top: 3rem;
+    }
+
+    .experience-card {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 1.2rem;
+      padding: 1.25rem;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.86);
+      box-shadow: var(--shadow);
+      transition: 0.26s ease;
+    }
+
+    .experience-card:hover {
+      border-color: rgba(34, 216, 131, 0.42);
+      box-shadow: var(--shadow-strong);
+      transform: translateX(10px);
+    }
+
+    .date {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: fit-content;
+      min-height: 2.2rem;
+      padding: 0.34rem 0.72rem;
+      border-radius: 999px;
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 800;
+      background: var(--green);
+      white-space: nowrap;
+    }
+
+    .experience-card h3 {
+      font-family: var(--heading);
+      font-size: 1.28rem;
+      line-height: 1.15;
+    }
+
+    .org {
+      margin-top: 0.25rem;
+      color: var(--green-dark);
+      font-weight: 800;
+    }
+
+    .experience-card ul {
+      display: grid;
+      gap: 0.42rem;
+      margin-top: 0.9rem;
+      margin-left: 1.1rem;
+      color: var(--text);
+    }
+
+    .projects-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .project-card {
+      min-height: 310px;
+    }
+
+    .project-icon {
+      display: grid;
+      place-items: center;
+      width: 58px;
+      height: 58px;
+      margin-bottom: 1rem;
+      border-radius: 50%;
+      color: #fff;
+      font-family: var(--heading);
+      font-weight: 800;
+      background: var(--green);
+      box-shadow: 0 16px 34px rgba(34, 216, 131, 0.24);
+    }
+
+    .education-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .marquee-section {
+      max-width: none;
+      padding-left: 0;
+      padding-right: 0;
+      overflow: hidden;
+    }
+
+    .marquee-section .section-head {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 clamp(1rem, 4vw, 2rem);
+    }
+
+    .marquee {
+      overflow: hidden;
+      margin-top: 2.4rem;
+      border-block: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.74);
+      mask-image: linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent);
+    }
+
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      gap: 0.8rem;
+      padding: 1rem;
+      animation: marquee 28s linear infinite;
+    }
+
+    .marquee-chip {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 3rem;
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--green-dark);
+      font-family: var(--heading);
+      font-size: 0.92rem;
+      background: #fff;
+      box-shadow: 0 10px 28px rgba(20, 86, 68, 0.08);
+      white-space: nowrap;
+    }
+
+    .contact-wrap {
+      display: grid;
+      align-items: center;
+      grid-template-columns: 1fr 0.72fr;
+      gap: 1.2rem;
+      margin-top: 3rem;
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 0.85rem;
+    }
+
+    .contact-card {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: #fff;
+      box-shadow: var(--shadow);
+      transition: 0.24s ease;
+    }
+
+    .contact-card:hover {
+      border-color: rgba(34, 216, 131, 0.45);
+      transform: translateX(8px);
+    }
+
+    .contact-icon {
+      display: grid;
+      flex: 0 0 auto;
+      place-items: center;
+      width: 48px;
+      height: 48px;
+      border-radius: 4px;
+      color: #fff;
+      font-family: var(--heading);
+      font-weight: 800;
+      background: var(--green);
+    }
+
+    .contact-card span {
+      display: block;
+      color: #7b8997;
+      font-size: 0.8rem;
+      font-weight: 800;
+    }
+
+    .contact-card strong {
+      display: block;
+      color: var(--ink);
+      word-break: break-word;
+    }
+
+    .contact-visual {
+      position: relative;
+      display: grid;
+      place-items: center;
+      min-height: 360px;
+    }
+
+    .contact-avatar {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      place-items: center;
+      width: min(58vw, 210px);
+      aspect-ratio: 1;
+      border: 12px solid #fff;
+      border-radius: 50%;
+      color: #fff;
+      font-family: var(--heading);
+      font-size: 4.7rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--green), #15b4a8);
+      box-shadow: var(--shadow-strong);
+      animation: pulseAvatar 3.5s ease-in-out infinite;
+    }
+
+    .ripple {
+      position: absolute;
+      width: min(58vw, 210px);
+      aspect-ratio: 1;
+      border: 1px solid rgba(34, 216, 131, 0.32);
+      border-radius: 50%;
+      animation: ripple 3.5s ease-out infinite;
+    }
+
+    .ripple:nth-child(2) {
+      animation-delay: 0.7s;
+    }
+
+    .ripple:nth-child(3) {
+      animation-delay: 1.4s;
+    }
+
+    .contact-cta {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 3;
+      max-width: 300px;
+      margin: auto;
+      padding: 1rem;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      color: var(--ink);
+      text-align: center;
+      font-weight: 800;
+      background: rgba(255, 255, 255, 0.86);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+    }
+
+    .reveal,
+    .reveal-left {
+      opacity: 0;
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .reveal {
+      transform: translateY(34px);
+    }
+
+    .reveal-left {
+      transform: translateX(-34px);
+    }
+
+    .reveal.visible,
+    .reveal-left.visible {
+      opacity: 1;
+      transform: translate(0, 0);
+    }
+
+    @property --p {
+      syntax: "<number>";
+      inherits: true;
+      initial-value: 0;
+    }
+
+    @keyframes loadbar {
+      from { transform: scaleX(0); }
+      to { transform: scaleX(1); }
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes counterSpin {
+      to { transform: rotate(-360deg); }
+    }
+
+    @keyframes shimmer {
+      to { background-position: 180% center; }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-18px); }
+    }
+
+    @keyframes bob {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+
+    @keyframes drift {
+      from { transform: translate3d(0, 0, 0) rotate(-3deg); }
+      to { transform: translate3d(14px, -20px, 0) rotate(5deg); }
+    }
+
+    @keyframes sweep {
+      to { transform: translateX(100%); }
+    }
+
+    @keyframes marquee {
+      to { transform: translateX(-50%); }
+    }
+
+    @keyframes pulseAvatar {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.04); }
+    }
+
+    @keyframes ripple {
+      from { opacity: 0.58; transform: scale(1); }
+      to { opacity: 0; transform: scale(1.85); }
+    }
+
+    @media (max-width: 1080px) {
+      .nav-inner {
+        align-items: flex-start;
+        border-radius: 24px;
+      }
+
+      .nav-links {
+        flex-wrap: wrap;
+      }
+
+      .hero,
+      .about,
+      .skills-wrap,
+      .contact-wrap {
+        grid-template-columns: 1fr;
+      }
+
+      .hero::after {
+        width: 100%;
+        height: 52%;
+        top: auto;
+        bottom: 0;
+        clip-path: polygon(0 18%, 100% 0, 100% 100%, 0 100%);
+      }
+
+      .hero-visual {
+        min-height: 550px;
+      }
+
+      .services-grid,
+      .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 760px) {
+      body { cursor: auto; }
+      .cursor-dot,
+      .cursor-ring { display: none; }
+
+      .navbar {
+        padding: 0.7rem;
+      }
+
+      .nav-inner {
+        display: block;
+        padding: 0.8rem;
+      }
+
+      .logo {
+        margin-bottom: 0.6rem;
+      }
+
+      .nav-links {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 0.44rem 0.7rem;
+        font-size: 0.76rem;
+      }
+
+      .talk-btn {
+        display: none;
+      }
+
+      .hero {
+        min-height: auto;
+        padding-top: 12rem;
+      }
+
+      .hero h1 {
+        font-size: clamp(2.75rem, 16vw, 4.4rem);
+      }
+
+      .hero-note {
+        margin-top: 2rem;
+      }
+
+      .hero-visual {
+        min-height: 500px;
+      }
+
+      .profile-figure {
+        transform: scale(0.88);
+        transform-origin: center top;
+      }
+
+      .language-grid,
+      .services-grid,
+      .projects-grid,
+      .education-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .experience-card {
+        grid-template-columns: 1fr;
+      }
+
+      .about-content .section-head {
+        text-align: center;
+      }
+
+      .about-content .section-copy {
+        margin-left: auto;
+      }
+
+      .about-actions,
+      .hero-actions {
+        width: 100%;
+      }
+
+      .btn {
+        flex: 1 1 100%;
+      }
+
+      .loader-word {
+        transform: rotate(var(--angle)) translateX(108px) rotate(calc(-1 * var(--angle)));
+      }
+    }
+
+    @media (max-width: 480px) {
+      .nav-links {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .hero {
+        padding-top: 15.5rem;
+      }
+
+      .profile-figure {
+        transform: scale(0.78);
+        min-height: 450px;
+      }
+
+      .floating-badge {
+        width: 100px;
+        min-width: 100px;
+        min-height: 100px;
+      }
+
+      .about-visual {
+        min-height: 430px;
+      }
+
+      .about-stat {
+        width: 104px;
+        height: 104px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+  <div class="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-ring" aria-hidden="true"></div>
+
+  <div class="loader" aria-hidden="true">
+    <div class="loader-orbit">
+      <span class="loader-word" style="--angle: 0deg;">Arabic</span>
+      <span class="loader-word" style="--angle: 72deg;">Français</span>
+      <span class="loader-word" style="--angle: 144deg;">English</span>
+      <span class="loader-word" style="--angle: 216deg;">ترجمة</span>
+      <span class="loader-word" style="--angle: 288deg;">Legal AI</span>
+      <div class="loader-initials">AZ</div>
+    </div>
+    <div class="loader-bar"></div>
+  </div>
+
+  <header class="navbar">
+    <nav class="nav-inner" aria-label="Primary navigation">
+      <a class="logo" href="#home"><span class="logo-mark">A</span> Achour</a>
+      <ul class="nav-links">
+        <li><a href="#home">Hello</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#languages">Languages</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <a class="talk-btn" href="#contact">Let's Talk</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="home" class="hero">
+      <div class="shape circle" style="left:3%;top:18%;"></div>
+      <div class="shape dots" style="right:5%;top:14%;"></div>
+      <div class="shape hex" style="right:-4%;bottom:14%;"></div>
+
+      <div class="hero-copy reveal">
+        <p class="eyebrow">Hello, I'm a</p>
+        <h1>Legal Translator &amp; <span>Linguistic AI Specialist.</span></h1>
+        <p class="hero-summary">
+          Trilingual Arabic-French-English language expert specializing in legal translation, MTPE, linguistic evaluation, data annotation, OCR correction, and AI-assisted translation workflows.
+        </p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#projects">View Projects</a>
+          <a class="btn secondary" href="#contact">Contact Me</a>
+        </div>
+        <div class="hero-note">
+          <span>Based in Guelma, Algeria</span>
+          <span>AR ↔ FR ↔ EN legal, academic, administrative, and technical workflows</span>
+        </div>
+      </div>
+
+      <div class="hero-visual reveal">
+        <span class="micro-text micro-1">ترجمة دقيقة</span>
+        <span class="micro-text micro-2">MTPE • OCR • QA</span>
+        <span class="micro-text micro-3">Legal Language</span>
+        <div class="profile-figure">
+          <div class="orbit"></div>
+          <div class="profile-core"></div>
+          <div class="profile-label"><strong>AR FR EN</strong><span>Translator</span></div>
+          <div class="floating-badge badge-a"><div><strong>3</strong><span>Languages</span></div></div>
+          <div class="floating-badge badge-b"><div><strong>AI</strong><span>OCR + MTPE</span></div></div>
+          <div class="floating-badge badge-c"><div><strong>Legal</strong><span>Domain Focus</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="about">
+      <div class="about-visual reveal-left">
+        <div class="about-ring"></div>
+        <div class="about-avatar">AZ</div>
+        <div class="about-stat one"><div><strong>3</strong><span>Languages</span></div></div>
+        <div class="about-stat two"><div><strong>C1</strong><span>English</span></div></div>
+        <div class="about-stat three"><div><strong>C1/C2</strong><span>French</span></div></div>
+      </div>
+      <div class="about-content reveal">
+        <div class="section-head">
+          <p class="section-kicker">Let me introduce myself</p>
+          <h2 class="section-title">About me</h2>
+          <p class="section-copy">
+            I am a trilingual Linguistic AI Specialist, Data Annotator, and Arabic-French-English translator with hands-on experience in legal translation, AI-assisted workflows, multilingual dataset quality, and human-in-the-loop language review.
+          </p>
+        </div>
+        <div class="about-card">
+          <h3>Precision across law, language, and AI</h3>
+          <p>
+            My work covers legal and administrative dossiers, immigration and visa files, academic translation, scientific article review, MT/LLM output scoring, adequacy and fluency ratings, terminology management, handwritten Arabic legal OCR, post-OCR correction, and parallel-corpus creation.
+          </p>
+        </div>
+        <div class="about-actions">
+          <a class="btn primary" href="#contact">Hire Me</a>
+          <a class="btn secondary" href="#work">See Experience</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="section-head reveal">
+        <p class="section-kicker">What I do for you</p>
+        <h2 class="section-title">Services</h2>
+        <p class="section-copy">Professional language services supported by documented translation, legal, annotation, and AI workflow experience.</p>
+      </div>
+      <div class="services-grid">
+        <article class="service-card featured reveal"><div class="service-icon">TR</div><h3>Legal Translation</h3><p>Legal and administrative dossiers, certified-style review, immigration, visa, and academic files with strict quality control.</p><div class="tag-row"><span class="tag">AR ↔ FR ↔ EN</span></div></article>
+        <article class="service-card reveal"><div class="service-icon">AI</div><h3>MTPE &amp; AI Review</h3><p>Light and full post-editing of neural MT output with adequacy, fluency, terminology, and domain-accuracy checks.</p><div class="tag-row"><span class="tag">MTPE</span><span class="tag">QA</span></div></article>
+        <article class="service-card reveal"><div class="service-icon">DA</div><h3>Data Annotation</h3><p>Segment alignment, entity tagging, classification, ranking, preference labeling, and gold-standard dataset curation.</p><div class="tag-row"><span class="tag">Datasets</span><span class="tag">Labeling</span></div></article>
+        <article class="service-card reveal"><div class="service-icon">OCR</div><h3>Document AI &amp; OCR</h3><p>Handwritten Arabic legal manuscript OCR, layout parsing, text extraction, post-OCR correction, and low-resource script work.</p><div class="tag-row"><span class="tag">Arabic OCR</span></div></article>
+        <article class="service-card reveal"><div class="service-icon">QA</div><h3>Linguistic QA</h3><p>Proofreading, consistency checks, legal style review, MQM/DQF-style error typology, and hallucination flagging.</p><div class="tag-row"><span class="tag">Review</span><span class="tag">Fluency</span></div></article>
+        <article class="service-card reveal"><div class="service-icon">TM</div><h3>Terminology Management</h3><p>Trilingual terminology databases, translation memory construction, termbases, and domain-specific legal glossaries.</p><div class="tag-row"><span class="tag">TM/TB</span></div></article>
+        <article class="service-card reveal"><div class="service-icon">AC</div><h3>Academic Translation Review</h3><p>Publication-grade academic translation and linguistic review for PhD candidates, researchers, and scientific articles.</p><div class="tag-row"><span class="tag">Academic</span></div></article>
+        <article class="service-card reveal"><div class="service-icon">LC</div><h3>Localization</h3><p>Cultural adaptation and contextual analysis for Arabic, French, and English multilingual communication.</p><div class="tag-row"><span class="tag">Cultural Fit</span></div></article>
+      </div>
+    </section>
+
+    <section id="languages">
+      <div class="section-head reveal">
+        <p class="section-kicker">Language profile</p>
+        <h2 class="section-title">Languages</h2>
+        <p class="section-copy">Resume-based proficiency levels with professional use in translation, review, and AI language workflows.</p>
+      </div>
+      <div class="language-grid">
+        <article class="language-card reveal" style="--accent:#22d883" data-progress="100"><div class="language-top"><h3>Arabic</h3><span class="language-dot"></span></div><div class="language-meter"><span>100%</span></div><span class="tag">Native</span><p>Used for legal translation, low-resource Arabic expertise, handwritten manuscript transcription, OCR correction, and Arabic legal terminology.</p></article>
+        <article class="language-card reveal" style="--accent:#20b6ff" data-progress="95"><div class="language-top"><h3>French</h3><span class="language-dot"></span></div><div class="language-meter"><span>95%</span></div><span class="tag">Fluent C1/C2</span><p>Used for French-Arabic legal translation, administrative dossiers, immigration and visa files, academic content, and localization.</p></article>
+        <article class="language-card reveal" style="--accent:#f0b34f" data-progress="90"><div class="language-top"><h3>English</h3><span class="language-dot"></span></div><div class="language-meter"><span>90%</span></div><span class="tag">Fluent C1</span><p>Used for trilingual workflows, AI language evaluation, academic and scientific translation review, and technical documentation.</p></article>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="section-head reveal">
+        <p class="section-kicker">Resume toolkit</p>
+        <h2 class="section-title">Skills</h2>
+        <p class="section-copy">Skill levels are visual emphasis indicators based on the resume context, not formal test scores.</p>
+      </div>
+      <div class="skills-wrap">
+        <div class="skill-panel reveal-left">
+          <h3>Core Strengths</h3>
+          <div class="skill-bar" data-percent="95"><div class="skill-meta"><span>Trilingual Translation</span><strong>95%</strong></div><div class="track"><div class="fill"></div></div></div>
+          <div class="skill-bar" data-percent="94"><div class="skill-meta"><span>Legal &amp; Administrative Texts</span><strong>94%</strong></div><div class="track"><div class="fill"></div></div></div>
+          <div class="skill-bar" data-percent="92"><div class="skill-meta"><span>MTPE &amp; Human Review</span><strong>92%</strong></div><div class="track"><div class="fill"></div></div></div>
+          <div class="skill-bar" data-percent="90"><div class="skill-meta"><span>Data Annotation</span><strong>90%</strong></div><div class="track"><div class="fill"></div></div></div>
+          <div class="skill-bar" data-percent="88"><div class="skill-meta"><span>Dataset Engineering</span><strong>88%</strong></div><div class="track"><div class="fill"></div></div></div>
+          <div class="skill-bar" data-percent="86"><div class="skill-meta"><span>OCR Fine-Tuning</span><strong>86%</strong></div><div class="track"><div class="fill"></div></div></div>
+        </div>
+        <div class="tools-panel reveal">
+          <h3>Tools &amp; Methods</h3>
+          <div class="tool-cloud">
+            <span class="tool-chip">Python</span><span class="tool-chip">Hugging Face</span><span class="tool-chip">Prompt Engineering</span><span class="tool-chip">SDL Trados</span><span class="tool-chip">MTPE Platforms</span><span class="tool-chip">Custom Labeling Workflows</span><span class="tool-chip">Translation Memory</span><span class="tool-chip">Termbase Management</span><span class="tool-chip">Microsoft Word</span><span class="tool-chip">Microsoft Excel</span><span class="tool-chip">Google Docs</span><span class="tool-chip">Google Sheets</span><span class="tool-chip">Database Management</span><span class="tool-chip">CSV</span><span class="tool-chip">JSON</span><span class="tool-chip">OCR Fine-Tuning</span><span class="tool-chip">Post-OCR Correction</span><span class="tool-chip">Structured Data Handling</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="work">
+      <div class="section-head reveal">
+        <p class="section-kicker">Professional path</p>
+        <h2 class="section-title">Experience</h2>
+        <p class="section-copy">Legal translation, AI language work, annotation, OCR, and academic linguistic consulting experience.</p>
+      </div>
+      <div class="experience-list">
+        <article class="experience-card reveal-left"><div><span class="date">May 2025 - Present</span></div><div><h3>Founder &amp; AI Developer</h3><p class="org">Legal OCR &amp; Translation Platform | Independent Project</p><ul><li>Designed and shipped an AI-powered web platform for French-Arabic legal translation with fine-tuned neural MT and a custom OCR module.</li><li>Built and annotated a proprietary bilingual legal corpus with aligned segments, terminology pairs, and domain-specific glossaries.</li><li>Fine-tuned OCR on handwritten Arabic legal manuscripts and historical deeds, manually labeling and correcting recognition output.</li><li>Defined annotation guidelines and ran QA passes to reduce hallucinations, terminology drift, and OCR misreads.</li></ul><div class="tag-row"><span class="tag">Legal OCR</span><span class="tag">Neural MT</span><span class="tag">Dataset QA</span></div></div></article>
+        <article class="experience-card reveal-left"><div><span class="date">May 2025 - Present</span></div><div><h3>Independent Legal Translator &amp; Linguistic Consultant</h3><p class="org">AFR Consulting &amp; Academic Sector (Remote)</p><ul><li>Deliver high-accuracy translations of legal and administrative dossiers, including immigration, visa, and academic files.</li><li>Support PhD candidates and researchers with publication-grade academic translation and linguistic review of specialized scientific articles.</li><li>Maintain trilingual terminology databases to ensure consistency across recurring document types.</li></ul><div class="tag-row"><span class="tag">Legal Translation</span><span class="tag">Academic Review</span><span class="tag">Terminology</span></div></div></article>
+        <article class="experience-card reveal-left"><div><span class="date">Mar 2025 - Nov 2025</span></div><div><h3>Associate Legal Translator</h3><p class="org">Public Office of Translation</p><ul><li>Executed MTPE workflows on machine-translated legal, administrative, and academic documents across AR ↔ FR ↔ EN.</li><li>Supported the integration of AI-assisted tools into the office workflow while maintaining human-verified accuracy on final output.</li><li>Performed proofreading and linguistic consistency checks against legal style requirements.</li><li>Authored client-facing explanations of certified translation procedures and legal terminology.</li></ul><div class="tag-row"><span class="tag">MTPE</span><span class="tag">Legal Style</span><span class="tag">Client Communication</span></div></div></article>
+        <article class="experience-card reveal-left"><div><span class="date">Jan 2025 - Mar 2025</span></div><div><h3>Legal Translation Trainee</h3><p class="org">Public Office of Translation, under supervision of an official sworn translator</p><ul><li>Trained in the operational workflow of an official translation office, including document authentication, legal formatting, and administrative compliance.</li><li>Prepared preliminary translations and validated source/target alignment prior to final certification.</li></ul><div class="tag-row"><span class="tag">Trainee</span><span class="tag">Authentication</span><span class="tag">Alignment</span></div></div></article>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="section-head reveal">
+        <p class="section-kicker">Selected work</p>
+        <h2 class="section-title">Projects</h2>
+        <p class="section-copy">Featured work extracted from the resume, focused on translation technology, legal language, OCR, and dataset quality.</p>
+      </div>
+      <div class="projects-grid">
+        <article class="project-card reveal"><div class="project-icon">AI</div><h3>AI-Powered Legal OCR &amp; Translation Platform</h3><p>End-to-end pipeline for Algerian legal documents: OCR ingestion, post-OCR correction, neural translation, and human review.</p><p><a href="https://translationsaas.vercel.app/" target="_blank" rel="noopener">translationsaas.vercel.app</a></p><div class="tag-row"><span class="tag">French-Arabic</span><span class="tag">Legal OCR</span><span class="tag">Neural MT</span></div></article>
+        <article class="project-card reveal"><div class="project-icon">TB</div><h3>Bilingual Legal Corpus &amp; Terminology Base</h3><p>Aligned legal segments, terminology pairs, and domain-specific glossaries for Algerian legal language and model fine-tuning.</p><div class="tag-row"><span class="tag">Parallel Corpus</span><span class="tag">TM</span><span class="tag">Termbase</span></div></article>
+        <article class="project-card reveal"><div class="project-icon">OCR</div><h3>Handwritten Arabic Legal OCR Pipeline</h3><p>OCR workflow for handwritten Arabic legal manuscripts and historical deeds, with manual labeling and correction.</p><div class="tag-row"><span class="tag">Arabic</span><span class="tag">Low-Resource Script</span><span class="tag">Post-OCR</span></div></article>
+        <article class="project-card reveal"><div class="project-icon">QA</div><h3>AI-Assisted MTPE Workflow</h3><p>Workflow for checking machine-translated legal, administrative, and academic documents for adequacy, fluency, and terminology.</p><div class="tag-row"><span class="tag">MTPE</span><span class="tag">Human Review</span><span class="tag">Legal QA</span></div></article>
+      </div>
+    </section>
+
+    <section id="education">
+      <div class="section-head reveal">
+        <p class="section-kicker">Education and certification</p>
+        <h2 class="section-title">Education</h2>
+        <p class="section-copy">Formal translation training and professional translator certification listed in the resume.</p>
+      </div>
+      <div class="education-grid">
+        <article class="education-card reveal"><span class="date">June 2024</span><h3>Bachelor's Degree in Translation and Interpreting</h3><p>Arabic-French-English track at Badji Mokhtar University of Annaba, Algeria.</p><div class="tag-row"><span class="tag">Translation</span><span class="tag">Interpreting</span><span class="tag">AR-FR-EN</span></div></article>
+        <article class="education-card reveal"><span class="date">Certification</span><h3>Specialized Professional Certified Trainer of Translators</h3><p>Torjoman Al Arab Universal Group.</p><div class="tag-row"><span class="tag">Translator Training</span><span class="tag">Professional Certification</span></div></article>
+      </div>
+    </section>
+
+    <section class="marquee-section">
+      <div class="section-head reveal">
+        <p class="section-kicker">Institutions and areas</p>
+        <h2 class="section-title">Professional Context</h2>
+        <p class="section-copy">Organizations, institutions, and resume-based work contexts.</p>
+      </div>
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee-track">
+          <span class="marquee-chip">AFR Consulting</span><span class="marquee-chip">Academic Sector</span><span class="marquee-chip">Public Office of Translation</span><span class="marquee-chip">Badji Mokhtar University of Annaba</span><span class="marquee-chip">Torjoman Al Arab Universal Group</span><span class="marquee-chip">Legal OCR &amp; Translation Platform</span><span class="marquee-chip">Legal Translation</span><span class="marquee-chip">Data Annotation</span>
+          <span class="marquee-chip">AFR Consulting</span><span class="marquee-chip">Academic Sector</span><span class="marquee-chip">Public Office of Translation</span><span class="marquee-chip">Badji Mokhtar University of Annaba</span><span class="marquee-chip">Torjoman Al Arab Universal Group</span><span class="marquee-chip">Legal OCR &amp; Translation Platform</span><span class="marquee-chip">Legal Translation</span><span class="marquee-chip">Data Annotation</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="section-head reveal">
+        <p class="section-kicker">Let us work together</p>
+        <h2 class="section-title">Contact</h2>
+        <p class="section-copy">Available for translation, localization, MTPE, linguistic QA, annotation, and AI-assisted document workflows.</p>
+      </div>
+      <div class="contact-wrap">
+        <div class="contact-list">
+          <a class="contact-card reveal-left" href="mailto:achourzineddine16@gmail.com"><div class="contact-icon">@</div><div><span>Email</span><strong>achourzineddine16@gmail.com</strong></div></a>
+          <a class="contact-card reveal-left" href="tel:+213542395468"><div class="contact-icon">☎</div><div><span>Phone</span><strong>+213 542 395 468</strong></div></a>
+          <div class="contact-card reveal-left"><div class="contact-icon">LOC</div><div><span>Location</span><strong>Guelma, Algeria</strong></div></div>
+          <div class="contact-card reveal-left"><div class="contact-icon">AI</div><div><span>Availability</span><strong>Translation, localization, MTPE, legal AI, and data annotation projects</strong></div></div>
+          <a class="contact-card reveal-left" href="https://translationsaas.vercel.app/" target="_blank" rel="noopener"><div class="contact-icon">↗</div><div><span>AI Legal OCR Platform Demo</span><strong>translationsaas.vercel.app</strong></div></a>
+        </div>
+        <div class="contact-visual reveal">
+          <span class="ripple"></span><span class="ripple"></span><span class="ripple"></span>
+          <div class="contact-avatar">AZ</div>
+          <div class="contact-cta">Let's connect across languages.</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    (function () {
+      const body = document.body;
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      setTimeout(() => body.classList.add("loaded"), 2000);
+
+      document.querySelectorAll('a[href^="#"]').forEach((link) => {
+        link.addEventListener("click", (event) => {
+          const target = document.querySelector(link.getAttribute("href"));
+          if (!target) return;
+          event.preventDefault();
+          target.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
+        });
+      });
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("visible");
+
+          if (entry.target.classList.contains("skill-bar")) {
+            const fill = entry.target.querySelector(".fill");
+            if (fill) fill.style.width = `${entry.target.dataset.percent || 0}%`;
+            entry.target.classList.add("filled");
+          }
+
+          if (entry.target.classList.contains("language-card")) {
+            entry.target.style.setProperty("--p", entry.target.dataset.progress || 0);
+          }
+
+          observer.unobserve(entry.target);
+        });
+      }, { threshold: 0.18, rootMargin: "0px 0px -8% 0px" });
+
+      document.querySelectorAll(".reveal, .reveal-left, .skill-bar, .language-card").forEach((item) => observer.observe(item));
+
+      const dot = document.querySelector(".cursor-dot");
+      const ring = document.querySelector(".cursor-ring");
+      let mouseX = 0;
+      let mouseY = 0;
+      let ringX = 0;
+      let ringY = 0;
+
+      if (window.matchMedia("(pointer: fine)").matches && dot && ring) {
+        window.addEventListener("mousemove", (event) => {
+          mouseX = event.clientX;
+          mouseY = event.clientY;
+          dot.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%)`;
+          body.classList.add("cursor-ready");
+        });
+
+        document.querySelectorAll("a, button, .service-card, .project-card, .experience-card, .language-card, .education-card, .contact-card, .tool-chip").forEach((target) => {
+          target.addEventListener("mouseenter", () => body.classList.add("cursor-hover"));
+          target.addEventListener("mouseleave", () => body.classList.remove("cursor-hover"));
+        });
+
+        const moveRing = () => {
+          ringX += (mouseX - ringX) * 0.16;
+          ringY += (mouseY - ringY) * 0.16;
+          ring.style.transform = `translate(${ringX}px, ${ringY}px) translate(-50%, -50%)`;
+          requestAnimationFrame(moveRing);
+        };
+        moveRing();
+      }
+    })();
+  </script>
+</body>
+</html>
